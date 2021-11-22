@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
     height: 5vh;
-    background-color: green;
+    width: 100vw;
+    background-color: #fa2d17;
+    color: #FFFFFF;
 `;
 
 const NavBar = () => {
