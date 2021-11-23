@@ -16,9 +16,9 @@ const Button = styled.button`
     }
 `;
 
-const NavButton = ({ text, width, height, fontSize }) => {
+const NavButton = ({ text, width, height, fontSize, func }) => {
     return (
-        <Button width={width} height={height} fontSize={fontSize}>
+        <Button width={width} height={height} fontSize={fontSize} onClick={func}>
             {text}
         </Button>
     )

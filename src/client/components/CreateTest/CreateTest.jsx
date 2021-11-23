@@ -14,7 +14,7 @@ const CreateTest = () => {
     return (
         <TestSec>
             <TestForm setTest={setTest} test={test} />
-            <DisplayTest test={test} />
+            <DisplayTest test={test} setTest={setTest} />
         </TestSec>
     )
 }
