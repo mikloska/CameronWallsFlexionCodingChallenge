@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import TestForm from './TestForm';
+import DisplayTest from './DisplayTest';
+
+const TestSec = styled.section`
+    display: flex;
+`;
 
 const CreateTest = () => {
+
+    const [test, setTest] = useState([]);
+
     return (
-        <div>Create Test Page</div>
+        <TestSec>
+            <TestForm setTest={setTest} test={test} />
+            <DisplayTest test={test} />
+        </TestSec>
     )
 }
 
