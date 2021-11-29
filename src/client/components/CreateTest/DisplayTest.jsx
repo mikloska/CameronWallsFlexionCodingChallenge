@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import NavButton from '../Home/NavButton';
 
@@ -33,7 +34,12 @@ const DisplayTest = ({ test, setTest }) => {
 
     const createTest = (e) => {
         e.preventDefault();
+        //creates object with all data for post request
+        const dataToSend = { questions: test, testName: testName }
         // send data to serve to be stored on database
+        axios.post('http://localhost:3000/api/addTest', dataToSend)
+            .then(res => console.log(res))
+            .catch(err => console.log('Error', err));
         setTestName('');
         setTest([]);
         return;
@@ -44,7 +50,7 @@ const DisplayTest = ({ test, setTest }) => {
             {test.map((quest, i) => {
                 return (
                     <Question key={i}>
-                        <p>{`Convert ${quest.conversionUnit} ${quest.units} to ${quest.convertedTo}`}</p>
+                        <p>{`${i + 1}: Convert ${quest.number} ${quest.units} to ${quest.convertTo}`}</p>
                     </Question>
                 )
             })}

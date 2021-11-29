@@ -3,6 +3,8 @@ const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const app = express();
+const pool = require('./db');
+const routes = require('./router');
 const PORT = 3000;
 
 app.use(express.json());
@@ -16,6 +18,9 @@ app.use('/build', express.static(path.join(__dirname, '../../build/bundle.js')))
 app.get('/', (req, res) => {
   return res.sendFile(path.join(__dirname, '../../index.html'));
 });
+
+//Router
+app.use('/api', routes);
 
 //Default Error Handler
 app.use((err, req, res, next) => {

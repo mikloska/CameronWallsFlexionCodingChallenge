@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import NavButton from '../Home/NavButton';
 
 const HomeDiv = styled.section`
@@ -15,6 +16,13 @@ const HomeDiv = styled.section`
 `
 
 const Home = () => {
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/test')
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }, []);
+
     return (
         <HomeDiv>
             <Link to='createTest'>

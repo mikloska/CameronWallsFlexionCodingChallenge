@@ -35,7 +35,7 @@ const TestForm = ({ setTest, test }) => {
 
     const unitsOfTemp = ['Fahrenheit', 'Kelvin', 'Celsius', 'Rankine'];
 
-    const unitsOfVolume = ['Leter', 'Tablespoons', 'Cubic-Inches', 'Cups', 'Cubic-Feet', 'Gallons'];
+    const unitsOfVolume = ['Liter', 'Tablespoons', 'Cubic-Inches', 'Cups', 'Cubic-Feet', 'Gallons'];
 
     // conditionally renders select element based on what the initail unit of measure is.
     // ensures the expected response is not to a unit that the input can not be converted to
@@ -54,7 +54,7 @@ const TestForm = ({ setTest, test }) => {
     // commits each question to the test current test bank
     const submitQuestion = (e) => {
         e.preventDefault();
-        setTest([...test, { conversionUnit: parseFloat(question), units: units, convertedTo: convertUnits }])
+        setTest([...test, { number: parseFloat(question), units: units, convertTo: convertUnits }])
         setQuestion('');
     }
 
