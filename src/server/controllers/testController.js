@@ -16,6 +16,22 @@ testController.getTests = async (req, res, next) => {
             log: 'testController.getTests: ERROR getting tests',
             message: {err: `error in testController.getTests: ${err} ` }
         });
+    };
+}
+
+testController.getQuestions = async (req, res, next) => {
+    console.log(req.query);
+    try{
+        const queryString = 'SELECT * FROM questions WHERE test_id = $1;';
+        const questions = await db.query(queryString, [req.query.id]);
+        res.locals.questions = questions.rows;
+        next()
+    }
+    catch(err) {
+        return next({
+            log: 'testController.getQuestions: ERROR fetching test questions',
+            message: {err: `error in testController.getQuestions: ${err} ` }
+        });
     }
 }
 

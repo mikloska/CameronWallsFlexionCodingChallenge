@@ -10,6 +10,7 @@ const Button = styled.button`
     height: ${props => props.height};
     font-size: ${props => props.fontSize};
     color: white;
+    cursor: pointer;
     :hover {
         background-color: white;
         color: #fa2d17;
