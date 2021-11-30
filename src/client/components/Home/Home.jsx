@@ -7,6 +7,7 @@ import Card from './Card';
 
 const HomeDiv = styled.section`
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -19,10 +20,7 @@ const Home = () => {
 
     useEffect(() => {
         axios.get('http://localhost:3000/api/test')
-            .then(res => {
-                console.log(res.data)
-                setTests(res.data)
-            })
+            .then(res => setTests(res.data))
             .catch(err => console.log(err))
     }, []);
 

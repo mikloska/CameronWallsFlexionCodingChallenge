@@ -1,6 +1,6 @@
-import axios from "axios";
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const CardTemplate = styled.button`
 display: flex;
@@ -27,20 +27,13 @@ p {
 
 const Card = ({ test_id, test_name }) => {
 
-    const getQuestions = (e) => {
-        e.preventDefault();
-        axios.get(`http://localhost:3000/api/getTestQuestions/${test_id}`, {
-            params: {
-                id: test_id
-            }
-        })
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-    }
     return (
-        <CardTemplate onClick={getQuestions}>
-            <p>{test_name}</p>
-        </CardTemplate>
+        <Link to={`gradeTest/${test_id}`}>
+            <CardTemplate >
+                <p>{test_name}</p>
+            </CardTemplate>
+        </Link>
+
     );
 }
 
