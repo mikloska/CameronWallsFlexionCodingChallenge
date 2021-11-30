@@ -4,6 +4,21 @@ const db = require('../db');
 
 const testController = {};
 
+testController.getTests = async (req, res, next) => {
+    try{
+        const queryString = 'SELECT * FROM tests;';
+        const test = await db.query(queryString);
+        res.locals.test = test.rows;
+        next();
+    }
+    catch(err) {
+        return next({
+            log: 'testController.getTests: ERROR getting tests',
+            message: {err: `error in testController.getTests: ${err} ` }
+        });
+    }
+}
+
 testController.convertValuesForDB = (req, res, next) => {
     const {questions, testName} = req.body;
     const convertedQuestions = [];
@@ -38,10 +53,8 @@ testController.createQuestions = async (req, res, next) => {
     try {
         const questions = res.locals.questions;
         const queryString = 'INSERT INTO questions (question_value, measured_in, converted_to, answer, test_id) VALUES ($1, $2, $3, $4, $5);';
-        const addQuestion = await async.each(questions, (question) => {
-            console.log('question',question)
-            const response = db.query(queryString, [question.number, question.units, question.convertTo, question.answer, res.locals.id]);
-            console.log('question after',question)
+        await async.each(questions, (question) => {
+            db.query(queryString, [question.number, question.units, question.convertTo, question.answer, res.locals.id]);
         });
         next();
     }

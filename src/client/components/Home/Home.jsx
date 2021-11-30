@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -9,28 +9,27 @@ const HomeDiv = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    width: 50vw;
-    background-color: #fa2d17;
-    
-`
+    height: 100%;
+    width: 100vw;
+`;
 
 const Home = () => {
 
+    const [tests, setTests] = useState([]);
+
     useEffect(() => {
         axios.get('http://localhost:3000/api/test')
-            .then(res => console.log(res))
+            .then(res => setTests(res.data))
             .catch(err => console.log(err))
-    }, []);
+    });
 
     return (
         <HomeDiv>
-            <Link to='createTest'>
-                <NavButton text='Add Test' width='300px' height='75px' fontSize='20px' />
-            </Link>
-            <Link to='createClass'>
-                <NavButton text='Add Class' width='300px' height='75px' fontSize='20px' />
-            </Link>
+            {tests.length > 0 ? <h1>There are tests</h1> :
+                <Link to='createTest'>
+                    <NavButton text='Add Test' width='300px' height='75px' fontSize='20px' />
+                </Link>
+            }
         </HomeDiv>
     );
 }

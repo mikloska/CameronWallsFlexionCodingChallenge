@@ -22,9 +22,6 @@ const NavBar = () => {
             <Link to='createTest'>
                 <NavButton text='Add Test' width='100px' height='30px' fontSize='15px' />
             </Link>
-            <Link to='createClass'>
-                <NavButton text='Add Class' width='100px' height='30px' fontSize='15px' />
-            </Link>
         </Nav>
     )
 }
