@@ -20,7 +20,6 @@ testController.getTests = async (req, res, next) => {
 }
 
 testController.getQuestions = async (req, res, next) => {
-    console.log(req.query);
     try{
         const queryString = 'SELECT * FROM questions WHERE test_id = $1;';
         const questions = await db.query(queryString, [req.query.id]);

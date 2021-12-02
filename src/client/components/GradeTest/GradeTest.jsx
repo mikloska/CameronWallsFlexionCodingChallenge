@@ -30,7 +30,7 @@ const GradeTest = () => {
             .then(res => setQuestions(res.data))
             .catch(err => console.log(err))
     }, [])
-    console.log(questions)
+
     return (
         <DisplayGradeTest>
             <p className='score'>{`Students Grade: ${(amountCorrect / questions.length) * 100}%`}</p>
