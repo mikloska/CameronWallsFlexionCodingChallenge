@@ -64,11 +64,11 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
 
     const [question, setQuestion] = useState('');
     const [units, setUnits] = useState('Fahrenheit');
-    const [convertUnits, setConvertUnits] = useState('Fahrenheit');
+    const [convertUnits, setConvertUnits] = useState('-');
     const [error, setError] = useState(false);
 
-    const unitsOfTemp = ['Fahrenheit', 'Kelvin', 'Celsius', 'Rankine'];
-    const unitsOfVolume = ['Liter', 'Tablespoons', 'Cubic-Inches', 'Cups', 'Cubic-Feet', 'Gallons'];
+    const unitsOfTemp = ['-', 'Fahrenheit', 'Kelvin', 'Celsius', 'Rankine'];
+    const unitsOfVolume = ['--', 'Liter', 'Tablespoons', 'Cubic-Inches', 'Cups', 'Cubic-Feet', 'Gallons'];
 
     // conditionally renders select element based on what the initail unit of measure is.
     // ensures the expected response is not to a unit that the input can not be converted to
@@ -83,6 +83,11 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
             </select>
         }
     };
+
+    const onSetUnits = (e) => {
+        setUnits(e.target.value);
+        setConvertUnits('-');
+    }
 
     const createTest = (e) => {
         e.preventDefault();
@@ -101,7 +106,12 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
     // commits each question to the current test bank
     const submitQuestion = (e) => {
         e.preventDefault();
-        if (units === convertUnits || /[a-zA-Z]/i.test(question)) return setError(true);
+
+        // checks to see if units and converted units are the same or if a letter has been entered into quesiton value
+        // displays error message if true
+        if (units === convertUnits || /[a-zA-Z]/i.test(question) || convertUnits === '-') return setError(true);
+
+        // adds a test object to test array, resets question value and removes error message
         setTest([...test, { number: parseFloat(question), units: units, convertTo: convertUnits }]);
         setQuestion('');
         setError(false);
@@ -122,7 +132,7 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
                     </div>
                     <div className='wrapper'>
                         <label>Units:</label>
-                        <select onChange={(e) => setUnits(e.target.value)}>
+                        <select onChange={onSetUnits}>
                             {[...unitsOfTemp, ...unitsOfVolume].map(unit => <option key={unit} value={unit}>{unit}</option>)}
                         </select>
                     </div>
