@@ -21,10 +21,10 @@ const NavBar = () => {
     return (
         <Nav>
             <Link to='/'>
-                <NavButton text='Home' width='100px' height='30px' fontSize='15px' />
+                <NavButton text='Home' width='100px' height='40px' fontSize='17px' />
             </Link>
             <Link to='createTest'>
-                <NavButton text='Add Test' width='100px' height='30px' fontSize='15px' />
+                <NavButton text='Add Test' width='100px' height='40px' fontSize='17px' />
             </Link>
         </Nav>
     )

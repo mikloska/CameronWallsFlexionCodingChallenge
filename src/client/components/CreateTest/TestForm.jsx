@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import NavButton from '../Home/NavButton';
 
@@ -29,6 +30,12 @@ const FormContainer = styled.div`
     label {
         font-size: 30px;
     }
+
+    p {
+        font-size: 20px;
+        color: #fa2d17;
+        text-align: center;
+    }
 `;
 
 const Form = styled.form`
@@ -58,6 +65,7 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
     const [question, setQuestion] = useState('');
     const [units, setUnits] = useState('Fahrenheit');
     const [convertUnits, setConvertUnits] = useState('Fahrenheit');
+    const [error, setError] = useState(false);
 
     const unitsOfTemp = ['Fahrenheit', 'Kelvin', 'Celsius', 'Rankine'];
     const unitsOfVolume = ['Liter', 'Tablespoons', 'Cubic-Inches', 'Cups', 'Cubic-Feet', 'Gallons'];
@@ -80,10 +88,11 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
         e.preventDefault();
         //creates object with all data for post request
         const dataToSend = { questions: test, testName: testName }
+        console.log('dataToSend', dataToSend)
         // send data to serve to be stored on database
         axios.post('http://localhost:3000/api/addTest', dataToSend)
             .then(res => console.log(res))
-            .catch(err => console.log('Error', err));
+            .catch(err => console.log('Error creating test', err));
         setTestName('');
         setTest([]);
         return;
@@ -92,8 +101,11 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
     // commits each question to the current test bank
     const submitQuestion = (e) => {
         e.preventDefault();
-        setTest([...test, { number: parseFloat(question), units: units, convertTo: convertUnits }])
+        if (units === convertUnits || /[a-zA-Z]/i.test(question)) return setError(true);
+        setTest([...test, { number: parseFloat(question), units: units, convertTo: convertUnits }]);
         setQuestion('');
+        setError(false);
+        return;
     }
 
     return (
@@ -119,6 +131,7 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
                         {convertTo()}
                     </div>
                 </div>
+                {error && <p>Error: Question Value cannot cantain letters. Units and Convert To must be different</p>}
                 <NavButton text='Add Conversion' width='200px' height='60px' fontSize='20px' />
             </Form>
             <NavButton text='Submit Test' width='200px' height='60px' fontSize='20px' func={createTest} />

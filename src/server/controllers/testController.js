@@ -35,7 +35,7 @@ testController.getQuestions = async (req, res, next) => {
 }
 
 testController.convertValuesForDB = (req, res, next) => {
-    const {questions, testName} = req.body;
+    const {questions} = req.body;
     const convertedQuestions = [];
 
     // converts given units to desired units
