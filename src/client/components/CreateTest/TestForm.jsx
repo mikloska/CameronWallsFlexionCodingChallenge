@@ -2,22 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavButton from '../Home/NavButton';
 
-const Form = styled.form`
+const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50vw;
+    margin: 20px;
 
-    .formDiv {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px;
-    }
     input, select {
-        width: 50%;
-        min-width: 100px;
+        min-width: 150px;
         height: 50px;
         border: 1px solid black;
         border-radius: 10px;
@@ -25,16 +18,48 @@ const Form = styled.form`
         padding: 5px;
         font-size: 20px;
     }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    label {
+        font-size: 30px;
+    }
 `;
 
-const TestForm = ({ setTest, test }) => {
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+
+    .formDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+
+    @media (max-width: 700px) {
+        .formDiv {
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+`;
+
+const TestForm = ({ setTest, test, testName, setTestName }) => {
 
     const [question, setQuestion] = useState('');
     const [units, setUnits] = useState('Fahrenheit');
     const [convertUnits, setConvertUnits] = useState('Fahrenheit');
 
     const unitsOfTemp = ['Fahrenheit', 'Kelvin', 'Celsius', 'Rankine'];
-
     const unitsOfVolume = ['Liter', 'Tablespoons', 'Cubic-Inches', 'Cups', 'Cubic-Feet', 'Gallons'];
 
     // conditionally renders select element based on what the initail unit of measure is.
@@ -51,7 +76,20 @@ const TestForm = ({ setTest, test }) => {
         }
     };
 
-    // commits each question to the test current test bank
+    const createTest = (e) => {
+        e.preventDefault();
+        //creates object with all data for post request
+        const dataToSend = { questions: test, testName: testName }
+        // send data to serve to be stored on database
+        axios.post('http://localhost:3000/api/addTest', dataToSend)
+            .then(res => console.log(res))
+            .catch(err => console.log('Error', err));
+        setTestName('');
+        setTest([]);
+        return;
+    }
+
+    // commits each question to the current test bank
     const submitQuestion = (e) => {
         e.preventDefault();
         setTest([...test, { number: parseFloat(question), units: units, convertTo: convertUnits }])
@@ -59,16 +97,32 @@ const TestForm = ({ setTest, test }) => {
     }
 
     return (
-        <Form onSubmit={submitQuestion}>
-            <div className='formDiv'>
-                <input placeholder='Enter Value' value={question} onChange={(e) => setQuestion(e.target.value)} />
-                <select onChange={(e) => setUnits(e.target.value)}>
-                    {[...unitsOfTemp, ...unitsOfVolume].map(unit => <option key={unit} value={unit}>{unit}</option>)}
-                </select>
-                {convertTo()}
+        <FormContainer>
+            <div className='wrapper'>
+                <label>Test Name:</label>
+                <input placeholder='Enter Test Name' value={testName} onChange={(e) => setTestName(e.target.value)} />
             </div>
-            <NavButton text='Add Conversion' width='200px' height='60px' fontSize='20px' />
-        </Form>
+            <Form onSubmit={submitQuestion}>
+                <div className='formDiv'>
+                    <div className='wrapper'>
+                        <label>Question Value:</label>
+                        <input placeholder='Enter Value' value={question} onChange={(e) => setQuestion(e.target.value)} />
+                    </div>
+                    <div className='wrapper'>
+                        <label>Units:</label>
+                        <select onChange={(e) => setUnits(e.target.value)}>
+                            {[...unitsOfTemp, ...unitsOfVolume].map(unit => <option key={unit} value={unit}>{unit}</option>)}
+                        </select>
+                    </div>
+                    <div className='wrapper'>
+                        <label>Convert To:</label>
+                        {convertTo()}
+                    </div>
+                </div>
+                <NavButton text='Add Conversion' width='200px' height='60px' fontSize='20px' />
+            </Form>
+            <NavButton text='Submit Test' width='200px' height='60px' fontSize='20px' func={createTest} />
+        </FormContainer>
     );
 }
 

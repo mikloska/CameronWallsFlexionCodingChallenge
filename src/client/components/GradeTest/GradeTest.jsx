@@ -7,6 +7,7 @@ import GradeQuestion from './QuestionAnswer';
 const DisplayGradeTest = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
     .score {
         text-align: center;
         font-size: 50px;

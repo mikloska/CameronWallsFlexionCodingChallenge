@@ -11,7 +11,7 @@ const HomeDiv = styled.section`
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100vw;
+    width: 100%;
 `;
 
 const Home = () => {

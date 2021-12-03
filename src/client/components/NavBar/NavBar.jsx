@@ -7,10 +7,14 @@ const Nav = styled.nav`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 10vh;
-    width: 100vw;
+    height: 100px;
+    width: 100%;
     background-color: #fa2d17;
     color: #FFFFFF;
+
+    @media (max-width: 700px) {
+        justify-content: center;
+    }
 `;
 
 const NavBar = () => {

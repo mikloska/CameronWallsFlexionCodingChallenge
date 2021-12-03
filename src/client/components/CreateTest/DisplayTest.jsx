@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
-import NavButton from '../Home/NavButton';
 
 const Display = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50vw;
+    width: 90%;
+    margin: 20px;
 
-    input {
-        width: 50%;
-        min-width: 100px;
-        height: 50px;
-        border: 1px solid black;
-        border-radius: 10px;
-        margin: 10px;
-        padding: 5px;
-        font-size: 20px;
+    label {
+        font-size: 30px;
+        border-bottom: 1px solid black;
+    }
 `;
 
 const Question = styled.div`
@@ -30,23 +24,9 @@ const Question = styled.div`
 
 const DisplayTest = ({ test, setTest }) => {
 
-    const [testName, setTestName] = useState('');
-
-    const createTest = (e) => {
-        e.preventDefault();
-        //creates object with all data for post request
-        const dataToSend = { questions: test, testName: testName }
-        // send data to serve to be stored on database
-        axios.post('http://localhost:3000/api/addTest', dataToSend)
-            .then(res => console.log(res))
-            .catch(err => console.log('Error', err));
-        setTestName('');
-        setTest([]);
-        return;
-    }
-
     return (
         <Display>
+            <label>Questions:</label>
             {test.map((quest, i) => {
                 return (
                     <Question key={i}>
@@ -54,8 +34,6 @@ const DisplayTest = ({ test, setTest }) => {
                     </Question>
                 )
             })}
-            <input placeholder='Enter Test Name' value={testName} onChange={(e) => setTestName(e.target.value)} />
-            <NavButton text='Submit Test' width='200px' height='60px' fontSize='20px' func={createTest} />
         </Display>
 
     );

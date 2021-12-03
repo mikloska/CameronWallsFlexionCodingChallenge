@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const QuestionAnswer = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 100vw;
+    width: 100%;
 
     .wrapper {
         width: 33%;
@@ -15,7 +15,7 @@ const QuestionAnswer = styled.div`
     p {
         text-align: center;
         margin: 5px;
-        font-size: 40px;
+        font-size: 30px;
     }
 
     input {
@@ -26,6 +26,22 @@ const QuestionAnswer = styled.div`
         margin: 10px;
         padding: 5px;
         font-size: 20px;
+    }
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+        border-bottom: 1px solid black;
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        input {
+            width: 75%;
+        }
     }
 
 `;
