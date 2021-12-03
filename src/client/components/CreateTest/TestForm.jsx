@@ -93,7 +93,6 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
         e.preventDefault();
         //creates object with all data for post request
         const dataToSend = { questions: test, testName: testName }
-        console.log('dataToSend', dataToSend)
         // send data to serve to be stored on database
         axios.post('http://localhost:3000/api/addTest', dataToSend)
             .then(res => console.log(res))
