@@ -14,20 +14,20 @@ const MockNavBar = () => {
 
 describe('NavBar Unit Tests', () => {
     it('should render 2 button elements', () => {
-        render(<MockNavBar/>)
+        render(<MockNavBar/>);
         const buttonElements = screen.getAllByRole('button');
         expect(buttonElements.length).toBe(2);
     });
 
     it('should render a Home button', () => {
-        render(<MockNavBar/>)
+        render(<MockNavBar/>);
         const buttonElement = screen.getByText(/Home/i);
         expect(buttonElement).toBeInTheDocument();
     });
 
     it('should render an Add Test button', () => {
-        render(<MockNavBar/>)
+        render(<MockNavBar/>);
         const buttonElement = screen.getByText(/Add Test/i);
         expect(buttonElement).toBeInTheDocument();
     });
-})
+});
