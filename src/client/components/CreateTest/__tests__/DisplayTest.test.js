@@ -22,5 +22,15 @@ describe('DisplayTest Unit Tests', () => {
         expect(questions.length).toBe(2);
     });
 
+    it('should render text for first question', () => {
+        render(<DisplayTest test={testData}/>);
+        const questionText = screen.getByText(/1: Convert 10 Fahrenheit to Celsius/i);
+        expect(questionText).toBeInTheDocument();
+    });
 
+    it('should render text for second question', () => {
+        render(<DisplayTest test={testData}/>);
+        const questionText = screen.getByText(/2: Convert 60 Cups to Gallons/i);
+        expect(questionText).toBeInTheDocument();
+    });
 })
