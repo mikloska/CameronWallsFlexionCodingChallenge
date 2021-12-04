@@ -23,7 +23,7 @@ const CreateTest = () => {
     return (
         <TestSec>
             <TestForm setTest={setTest} test={test} testName={testName} setTestName={setTestName} />
-            <DisplayTest test={test} setTest={setTest} />
+            <DisplayTest test={test} />
         </TestSec>
     )
 }

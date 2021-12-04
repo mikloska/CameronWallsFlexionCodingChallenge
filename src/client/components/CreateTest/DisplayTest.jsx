@@ -22,20 +22,19 @@ const Question = styled.div`
     }
 `;
 
-const DisplayTest = ({ test, setTest }) => {
+const DisplayTest = ({ test }) => {
 
     return (
-        <Display>
+        <Display data-testid='displayTest'>
             <label>Questions:</label>
             {test.map((quest, i) => {
                 return (
-                    <Question key={i}>
+                    <Question data-testid='question' key={i}>
                         <p>{`${i + 1}: Convert ${quest.number} ${quest.units} to ${quest.convertTo}`}</p>
                     </Question>
-                )
+                );
             })}
         </Display>
-
     );
 }
 

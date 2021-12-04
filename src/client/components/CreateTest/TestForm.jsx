@@ -118,7 +118,7 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
     }
 
     return (
-        <FormContainer>
+        <FormContainer data-testid='testForm'>
             <div className='wrapper'>
                 <label>Test Name:</label>
                 <input placeholder='Enter Test Name' value={testName} onChange={(e) => setTestName(e.target.value)} />
