@@ -35,7 +35,7 @@ const Card = ({ test_id, test_name }) => {
 
     return (
         <Link to={`gradeTest/${test_id}`}>
-            <CardTemplate >
+            <CardTemplate data-testid='card'>
                 <p>{test_name}</p>
             </CardTemplate>
         </Link>
