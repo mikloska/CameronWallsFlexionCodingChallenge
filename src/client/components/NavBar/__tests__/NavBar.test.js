@@ -30,4 +30,16 @@ describe('NavBar Unit Tests', () => {
         const buttonElement = screen.getByText(/Add Test/i);
         expect(buttonElement).toBeInTheDocument();
     });
+
+    it('should contain href to "/"  route', () => {
+        render(<MockNavBar/>);
+        const buttonElement = screen.getAllByRole('link');
+        expect(buttonElement[0]).toHaveAttribute('href', '/');
+    });
+
+    it('should contain href to "/createTest"  route', () => {
+        render(<MockNavBar/>);
+        const buttonElement = screen.getAllByRole('link');
+        expect(buttonElement[1]).toHaveAttribute('href', '/createTest');
+    });
 });
