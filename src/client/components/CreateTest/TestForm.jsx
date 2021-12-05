@@ -74,11 +74,11 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
     // ensures the expected response is not to a unit that the input can not be converted to
     const convertTo = () => {
         if (unitsOfTemp.includes(units)) {
-            return <select onChange={(e) => setConvertUnits(e.target.value)}>
+            return <select data-testid='convertSelect' onChange={(e) => setConvertUnits(e.target.value)}>
                 {unitsOfTemp.map(unit => <option key={unit} value={unit}>{unit}</option>)}
             </select>
         } else {
-            return <select onChange={(e) => setConvertUnits(e.target.value)}>
+            return <select data-testid='convertSelect' onChange={(e) => setConvertUnits(e.target.value)}>
                 {unitsOfVolume.map(unit => <option key={unit} value={unit}>{unit}</option>)}
             </select>
         }
@@ -123,7 +123,7 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
                 <label>Test Name:</label>
                 <input placeholder='Enter Test Name' value={testName} onChange={(e) => setTestName(e.target.value)} />
             </div>
-            <Form onSubmit={submitQuestion}>
+            <Form data-testid='form' onSubmit={submitQuestion}>
                 <div className='formDiv'>
                     <div className='wrapper'>
                         <label>Question Value:</label>
@@ -131,8 +131,8 @@ const TestForm = ({ setTest, test, testName, setTestName }) => {
                     </div>
                     <div className='wrapper'>
                         <label>Units:</label>
-                        <select onChange={onSetUnits}>
-                            {[...unitsOfTemp, ...unitsOfVolume].map(unit => <option key={unit} value={unit}>{unit}</option>)}
+                        <select data-testid='unitSelector' onChange={onSetUnits}>
+                            {[...unitsOfTemp, ...unitsOfVolume].map(unit => <option data-testid='unitOption' key={unit} value={unit}>{unit}</option>)}
                         </select>
                     </div>
                     <div className='wrapper'>
