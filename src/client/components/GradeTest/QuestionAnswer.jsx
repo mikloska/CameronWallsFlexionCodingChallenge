@@ -126,7 +126,7 @@ const GradeQuestion = ({ question_value, measured_in, converted_to, answer, setA
             }
         }
     }
-    console.log('unrounded answer', answer, 'rounded', roundedAnswer);
+
     return (
         <QuestionAnswer data-testid='QuestionAnswer'>
             <div className='wrapper'>
