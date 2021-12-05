@@ -43,7 +43,7 @@ const conversions = {
     },
     Cups: {
         Liter: (num) => num / 4.167,
-        Tablespoons: (num) => num / 16.231,
+        Tablespoons: (num) => num * 16.231,
         'Cubic-Inches': (num) => num * 14.646,
         'Cubic-Feet': (num) => num / 118,
         Gallons: (num) => num / 15.773
