@@ -59,9 +59,15 @@ const GradeQuestion = ({ question_value, measured_in, converted_to, answer, setA
     // rounds answer to tenths place
     // could be altered to allow the teacher to input what decimal place to round to
     const roundNumber = (num, isGreaterThan = 0.05) => {
+        let isNegative = false;
+        //checks to see if num is negative
+        if (parseFloat(num) < 0) isNegative = true;
         // checks if num can be rounded to tenth decimal place, and rounds if true
-        if (parseFloat(num) >= isGreaterThan) return Math.round(10 * num) / 10;
-
+        if (Math.abs(parseFloat(num)) >= isGreaterThan) {
+            const roundedResult = Math.round(10 * num) / 10;
+            if (isNegative) return -Math.abs(roundedResult);
+            else return roundedResult;
+        }
         // handles edge case of num not being able to be rounded to tenth decimal place
         else {
             const splitNum = num.toString().split('');
@@ -120,7 +126,7 @@ const GradeQuestion = ({ question_value, measured_in, converted_to, answer, setA
             }
         }
     }
-
+    console.log('unrounded answer', answer, 'rounded', roundedAnswer);
     return (
         <QuestionAnswer data-testid='QuestionAnswer'>
             <div className='wrapper'>
