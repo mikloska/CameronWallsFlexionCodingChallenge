@@ -81,4 +81,36 @@ testController.createQuestions = async (req, res, next) => {
     }
 }
 
+// only used to delete row from db after tests are ran for add a test to db.  
+testController.deleteQuestion = async (req, res, next) => {
+    try {
+        const {id} = req.body;
+        const questionsQueryString = 'DELETE FROM questions WHERE test_id = $1;';
+        const questionResponse = await db.query(questionsQueryString, [id]);
+        next();
+    }
+    catch(err){
+        return next({
+            log: 'testController.deleteQuestion: ERROR adding test questions',
+            message: {err: `error in testController.deleteQuestion: ${err}`}
+        });
+    }
+}
+
+// only used to delete row from db after tests are ran for add a test to db.  
+testController.deleteTest = async (req, res, next) => {
+    try {
+        const {id} = req.body;
+        const testQueryString = 'DELETE FROM tests WHERE test_id = $1;';
+        const testResponse = await db.query(testQueryString, [id]);
+        next();
+    }
+    catch(err){
+        return next({
+            log: 'testController.deleteTest: ERROR adding test questions',
+            message: {err: `error in testController.deleteTest: ${err}`}
+        });
+    }
+}
+
 module.exports = testController;

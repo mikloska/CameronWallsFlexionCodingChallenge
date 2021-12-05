@@ -30,4 +30,36 @@ describe('GET /api/getTestQuestions/:id', () => {
         const response  = await request(app).get('/api/getTestQuestions/:id').query({id: 0});
         expect(response.body.length).toBe(0);
     });
-})
+});
+
+describe('POST /api/addTest', () => {
+
+    const mockTestQuestions = [
+        {
+            number: 10,
+            units: 'Cups',
+            convertTo: 'Gallons'
+        },
+        {
+            number: 5,
+            units: 'Fahrenheit',
+            convertTo: 'Celsius'
+        }
+    ];
+
+    let responseId;
+
+    it('should add test entry to db', async () => {
+        const response  = await request(app).post('/api/addTest').send({
+            questions: mockTestQuestions,
+            testName: 'This is a test from Jest and SuperTest'
+        });
+        responseId = {id: response.body};
+        expect(response.statusCode).toEqual(200);
+    });
+
+    it('should delete test entry in db', async () => {
+        const deleteResponse = await request(app).delete('/api/deleteTest').send(responseId);
+        expect(deleteResponse.statusCode).toEqual(200);
+    });
+});
