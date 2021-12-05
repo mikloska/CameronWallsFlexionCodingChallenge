@@ -130,7 +130,7 @@ const GradeQuestion = ({ question_value, measured_in, converted_to, answer, setA
                 <input placeholder='Enter Student Answer' value={studentAnswer} onChange={checkAnswer} />
             </div>
             <div className='wrapper'>
-                <p>{rightWrong}</p>
+                <p data-testid='correctness'>{rightWrong}</p>
             </div>
         </QuestionAnswer>
     );
