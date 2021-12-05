@@ -122,7 +122,7 @@ const GradeQuestion = ({ question_value, measured_in, converted_to, answer, setA
     }
 
     return (
-        <QuestionAnswer>
+        <QuestionAnswer data-testid='QuestionAnswer'>
             <div className='wrapper'>
                 <p>{`Convert ${question_value} ${measured_in} to ${converted_to}`}</p>
             </div>

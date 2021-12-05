@@ -36,7 +36,6 @@ const GradeTest = () => {
         <DisplayGradeTest>
             <p className='score'>{`Students Grade: ${(amountCorrect / questions.length) * 100}%`}</p>
             {questions.map(question => {
-                console.log(question)
                 return (
                     <GradeQuestion
                         key={question.question_id}
