@@ -5,7 +5,7 @@
 4. To run the application run the command `npm run dev`
 5. To run testing suites run the command `npm run test`
 
-#Features to Improve Solution
+# Features to Improve Solution
 1. Add SignIn/ SignUp functionality for instructors.  This functionality will allow for the next few features.
 2. Create functionality to allow teachers to create tests that only they can see, but still allow for their to be a global test bank.
 3. Create functionality for teachers to create classes and allow teachers to save the grade of each student for each test they take.
