@@ -17,12 +17,12 @@ describe('GET /api/test', () => {
 describe('GET /api/getTestQuestions/:id', () => {
 
     it('should return status code 200 if successful', async () => {
-        const response  = await request(app).get('/api/getTestQuestions/:id').query({id: 30});
+        const response  = await request(app).get('/api/getTestQuestions/:id').query({id: 67});
         expect(response.statusCode).toEqual(200);
     });
 
     it('should return req.body.length >= 1', async () => {
-        const response  = await request(app).get('/api/getTestQuestions/:id').query({id: 30});
+        const response  = await request(app).get('/api/getTestQuestions/:id').query({id: 67});
         expect(response.body.length).toBeGreaterThanOrEqual(1);
     });
 
