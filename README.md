@@ -4,7 +4,7 @@
 3. Create .env and create an environment variable called DB_PASSWORD=abc123
 4. Run `npm install` to install dependencies
 5. To run the application run the command `npm run dev`
-6. To run testing suites run the command `npm run test`
+6. While running `npm run dev`, open a new terminal run `npm run test` to run the testing suites run 
 
 # Features to Improve Solution
 1. Add SignIn/ SignUp functionality for instructors.  This functionality will allow for the next few features.
