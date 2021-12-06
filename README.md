@@ -1,10 +1,9 @@
 # How to Install
 1. Fork repository from [Clone Flexion Coding Challenge](https://github.com/cwalls45/CameronWallsFlexionCodingChallenge)
 2. From your forked version, run `git clone` followed by the url of the forked repo.  It should look something like `git clone https://github.com/cwalls45/CameronWallsFlexionCodingChallenge.git`
-3. Create .env and create an environment variable called DB_PASSWORD=abc123
-4. Run `npm install` to install dependencies
-5. To run the application run the command `npm run dev`
-6. While running `npm run dev`, open a new terminal run `npm run test` to run the testing suites run 
+3. Run `npm install` to install dependencies
+4. To run the application run the command `npm run dev`
+5. While running `npm run dev`, open a new terminal run `npm run test` to run the testing suites run 
 
 # Features to Improve Solution
 1. Add SignIn/ SignUp functionality for instructors.  This functionality will allow for the next few features.
