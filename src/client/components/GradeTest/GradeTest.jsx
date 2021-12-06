@@ -8,10 +8,15 @@ const DisplayGradeTest = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     .score {
         text-align: center;
         font-size: 50px;
         border-bottom: 1px solid black;
+    }
+    .loading {
+        font-size: 90px;
+        color: #778899;
     }
 `;
 
@@ -30,7 +35,9 @@ const GradeTest = () => {
         })
             .then(res => setQuestions(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, []);
+
+    if (questions.length === 0) return <p className='loading'>Loading...</p>
 
     return (
         <DisplayGradeTest>
