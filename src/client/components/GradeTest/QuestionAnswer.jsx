@@ -62,8 +62,10 @@ const GradeQuestion = ({ question_value, measured_in, converted_to, answer, setA
         let isNegative = false;
         //checks to see if num is negative
         if (parseFloat(num) < 0) isNegative = true;
+        // handles edge case of num being 0
+        if (parseFloat(num) === 0) return 0;
         // checks if num can be rounded to tenth decimal place, and rounds if true
-        if (Math.abs(parseFloat(num)) >= isGreaterThan) {
+        else if (Math.abs(parseFloat(num)) >= isGreaterThan) {
             const roundedResult = Math.round(10 * num) / 10;
             if (isNegative) return -Math.abs(roundedResult);
             else return roundedResult;
