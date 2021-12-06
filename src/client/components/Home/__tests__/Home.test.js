@@ -16,8 +16,8 @@ describe('Home Unit Test', () => {
 
     it('renders NavButton if no test are recieved', async () => {
         render(<MockHome/>);
-        const NavButton = await screen.findByText(/Add Test/i);
-        expect(NavButton).toBeInTheDocument();
+        const loading = await screen.findByText(/Loading.../i);
+        expect(loading).toBeInTheDocument();
     });
 
     it('renders Cards', async () => {

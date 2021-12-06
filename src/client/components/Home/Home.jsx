@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
-import NavButton from '../Home/NavButton';
 import Card from './Card';
 
 const HomeDiv = styled.section`
@@ -12,6 +10,11 @@ const HomeDiv = styled.section`
     align-items: center;
     height: 100%;
     width: 100%;
+
+    .loading {
+        font-size: 40px;
+        color: #778899;
+    }
 `;
 
 const Home = () => {
@@ -35,9 +38,7 @@ const Home = () => {
     return (
         <HomeDiv>
             {tests.length > 0 ? tests.map(test => <Card data-testid='test' key={test.test_id} test_id={test.test_id} test_name={test.test_name} />) :
-                <Link to='createTest'>
-                    <NavButton text='Add Test' width='300px' height='75px' fontSize='20px' />
-                </Link>
+                <p className='loading' >Loading...</p>
             }
         </HomeDiv>
     );
