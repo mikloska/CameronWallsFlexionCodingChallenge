@@ -4,4 +4,5 @@ module.exports = {
       'node_modules',
      __dirname, 
     ],
+    testTimeout: 15000
   }
